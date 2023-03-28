@@ -21,8 +21,7 @@ import { Video } from 'expo-av';
 import { shareAsync } from 'expo-sharing';
 import * as MediaLibrary from 'expo-media-library';
 
-
-export default function App() {
+export default function CameraPage() {
   // const video = React.useRef(null)
   // const [statusVideo, setStatusVideo] = React.useState({})
   // let cameraRef = React.useRef();

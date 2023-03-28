@@ -6,6 +6,7 @@ import Title from './src/components/Title';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons'
 //import HomePage from './src/components/visualDesign/HomePage';
+import CameraPage from './CameraPage'
 
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -101,7 +102,7 @@ const ProfilePage = ({ navigation }) => {
   )
 };
 
-const CameraPage = ({ navigation }) => {
+const CameraPagePlug = ({ navigation }) => {
   return (
   <View>
               <Button
