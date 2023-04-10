@@ -1,19 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-//import { Button, StyleSheet, Text, View, SafeAreaView, Image } from 'react-native';
-//import Video from 'react-native-video';
-//import Title from './comps/Title';
-//import PlayVideo from './comps/PlayVideo';
-//import VideoScreen from './comps/VideoScreen/index';
-//import Dog from './videofile/dogvideo'
 import Constants from 'expo-constants';
-//import VideoPlayer from 'react-native-video-player';
-import { Platform } from 'react-native';
-//import { Video } from 'expo-av';
+import { Platform, TouchableOpacity } from 'react-native';
 import React from 'react';
-//import { Camera } from 'expo-camera';
-//import { shareAsync } from 'expo-sharing';
-//import * as MediaLibrary from 'expo-media-library';
-
 import { StyleSheet, Text, View, Button, SafeAreaView } from 'react-native';
 import { useEffect, useState, useRef } from 'react';
 import { Camera } from 'expo-camera';
@@ -22,61 +10,6 @@ import { shareAsync } from 'expo-sharing';
 import * as MediaLibrary from 'expo-media-library';
 
 export default function CameraPage() {
-  // const video = React.useRef(null)
-  // const [statusVideo, setStatusVideo] = React.useState({})
-  // let cameraRef = React.useRef();
-  // const [hasCameraPermission, setHasCameraPermission] = React.useState()
-  // const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = React.useState()
-  // const [photo, setPhoto] = React.useState()
-
-  // React.useEffect(() => {
-  //   (async () => {
-  //     const cameraPermission = await Camera.requestCameraPermissionsAsync();
-  //     const mediaLibraryPermission = await MediaLibrary.requestPermissionsAsync();
-  //     setHasCameraPermission(cameraPermission.status === "granted")
-  //     setHasMediaLibraryPermission(mediaLibraryPermission.status === "granted")
-  //   })();
-  // }, [])
-
-  // if (hasCameraPermission === undefined) {
-  //   return <Text>Requesting permissions...</Text>
-  // } else if (!hasCameraPermission){
-  //   return <Text>Permission for camera not granted. Please change this in settings.</Text>
-  // }
-
-  // let takePic = async () => {
-  //   let options = {
-  //     quality: 1,
-  //     base64: true,
-  //     exif: false,
-  //   };
-
-  //   let newPhoto = await cameraRef.current.takePictureAsync(options);
-  //   setPhoto(newPhoto);
-  // };
-
-  // if (photo) {
-  //   let sharePic = () => {
-  //     shareAsync(photo.uri).then(() => {
-  //       setPhoto(undefined)
-  //     })
-  //   };
-
-  //   let savePhoto = () => {
-  //     MediaLibrary.saveToLibraryAsync(photo.uri).then(() => {
-  //       savePhoto(undefined)
-  //     })
-  //   };
-
-  //   return (
-  //     <SafeAreaView style={styles.container}>
-  //       <Image style={styles.preview} source={{ uri: "data:image/jpg;base64," + photo.base64 }}/>
-  //       <Button title='Share' onPress={sharePic}/>
-  //       {hasMediaLibraryPermission ? <Button title='Save' onPress={savePhoto}/> : undefined}
-  //       <Button title='Discard' onPress={() => setPhoto(undefined)}/>
-  //     </SafeAreaView>
-  //   );
-  // }
 
   let cameraRef = useRef();
   const [hasCameraPermission, setHasCameraPermission] = useState();
@@ -153,35 +86,15 @@ export default function CameraPage() {
 
   return (
     <Camera style={styles.container} ref={cameraRef}>
-      <View style={styles.buttonContainer}>
-        <Button title={isRecording ? "Stop Recording" : "Record Video"} onPress={isRecording ? stopRecording : recordVideo} />
+      <View 
+        style={styles.buttonContainer}
+      >
+        <Button 
+          title={isRecording ? "Stop Recording" : "Record Video"} 
+          onPress={isRecording ? stopRecording : recordVideo} 
+        />
       </View>
     </Camera>
-
-    // <Camera style={styles.container} ref={cameraRef}>
-    //   {/* <Title/> */}
-    //   {/* <PlayVideo/> */}
-    //   {/* <TakePhoto/> */}
-
-    //   {/* <View style={styles.buttonContainer}>
-    //     <Button title='Take Pic' onPress={takePic}/>
-    //   </View> */}
-
-    //   {/* <Video
-    //     ref={video}
-    //     style={styles.video}
-    //     source={require("./videofile/dogvideo.mp4")}
-    //     useNativeControls
-    //     resizeMode='contain'
-    //     isLooping
-    //     onPlaybackStatusUpdate={setStatusVideo}
-    //   />
-    //   <View style={styles.buttons}>
-    //     <Button title='play from 5s' onPress={() => video.current.playFromPositionAsync(5000)}/>
-    //     <Button title={statusVideo.isLooping ? "Set to not loop" : "Set to loop"} onPress={() => video.current.setIsLoopingAsync(!statusVideo.isLooping)}/>
-    //   </View> */}
-    //   <StatusBar style='auto'/>
-    // </Camera>    
   );
 }
 
@@ -190,11 +103,18 @@ const styles = StyleSheet.create({
     flex: 1,
     //backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end', //center
   },
   buttonContainer: {
-    backgroundColor: '#fff',
-    alignSelf: 'flex-end',
+    //backgroundColor: '#ff4040',
+    alignSelf: 'stretch',
+    //borderColor: 'red',
+    //borderWidth: 8,
+    //borderRadius: 100,
+    height: 60,
+    width: 120,
+    alignSelf: 'center',
+    marginBottom: 30,
   },
   preview: {
     flex: 1,
@@ -204,6 +124,9 @@ const styles = StyleSheet.create({
     flex:1,
     alignSelf: 'stretch'
   },
+  recordButton: {
+    borderWidth: 8,
+  }
   // buttons: {
   //   margin: 16
   // }
