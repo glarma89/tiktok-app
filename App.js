@@ -12,6 +12,8 @@ import { Video } from 'expo-av';
 import PlayVideo from '../tiktok-app/src/components/PlayVideo';
 import TakePhoto from './src/components/TakePhoto';
 import Authentication from './src/components/Authentication';
+import Authentication2 from './src/components/Authentication2';
+import Authentication3 from './src/components/Authentication3';
 
 //const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -68,7 +70,7 @@ export default function App() {
       <Tab.Screen
         name='Search'
         //component={SearchPage}
-        component={Authentication}
+        component={Authentication3}
         options={{
           tabBarIcon: ({ color }) => (
               <Feather name='search' size={24} color={color}/>

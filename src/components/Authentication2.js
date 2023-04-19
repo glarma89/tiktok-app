@@ -1,88 +1,43 @@
 import React, { useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import MyAthentication from './MyAthentication';
-import OrgAthentication from './OrgAthentication';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-//import * as Google from 'expo-google-app-auth'
-import auth from '@react-native-firebase/auth';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { initializeApp } from 'firebase/app';
+
+// Инициализируем Firebase App
+const firebaseConfig = {
+    apiKey: "AIzaSyAJODQi4aHBrjPr56x3HQ5wCg5sca_JbKY",
+    authDomain: "ninja-firegram-3f348.firebaseapp.com",
+    projectId: "ninja-firegram-3f348",
+    storageBucket: "ninja-firegram-3f348.appspot.com",
+    messagingSenderId: "880878962145",
+    appId: "1:880878962145:web:3ac0b24d2ada9530fa7ea0"
+};
+const app = initializeApp(firebaseConfig);
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator();
 
 
-// const [accessToken, setAccessToken] = useState();
-// const [userInfo, setUserInfo] = useState();
-
-// async function signInWithGoogleAsync() {
-//   try {
-//     const result = await Google.logInAsync({
-//       androidClientId: "",
-//       iosClientId: "",
-//       scopes: ["profile", "email"]
-//     });
-
-//     if (result.type === "success") {
-//       setAccessToken(accessToken);
-//     } else {
-//       console.log('Permission denied');
-//     }
-//   } catch (e) {
-//     console.log(e);
-//   }
-// }
-
-// async function getUserData() {
-  
-// }
-
-// function showUserInfo() {
-  
-// }
-
 const Authentication = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const createUser = () => {
-    firebase.auth()
-  .createUserWithEmailAndPassword(email, password)
-  .then(() => {
-    console.log('User account created & signed in!');
-  })
-  .catch(error => {
-    if (error.code === 'auth/email-already-in-use') {
-      console.log('That email address is already in use!');
+  const handleRegister = async () => {
+    try {
+      const auth = getAuth(app);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(userCredential.user);
+      // дополнительная логика, которую вы хотите выполнить после успешной регистрации
+    } catch (error) {
+      console.log(error);
+      // дополнительная логика, которую вы хотите выполнить при возникновении ошибки
     }
-
-    if (error.code === 'auth/invalid-email') {
-      console.log('That email address is invalid!');
-    }
-
-    console.error(error);
-  });
-  }
+  };
 
   return (
     <View style={styles.container}>
-        {/* <Stack.Navigator initialRouteName="Authentication">
-        
-            <Stack.Screen
-                name="MyAthentication" 
-                component={MyAthentication} 
-                options={{headerShown: false}}
-            />
-                
-        
-<Stack.Screen
-    name="OrgAthentication" 
-    component={OrgAthentication} 
-    options={{headerShown: false}}
-/>
-        </Stack.Navigator> */}
-      {/* <MyAthentication/> */}
-      {/* <OrgAthentication/> */}
     
     <Button title='Personal'
         onPress={() => navigation.navigate("Personal", { accaunt: 'personal' })}
@@ -95,7 +50,7 @@ const Authentication = ({ navigation }) => {
     <TextInput placeholder='Enter Email' style={styles.email} value={email} onChangeText={txt => setEmail(txt)}/>
     <TextInput placeholder='Enter Password' style={styles.password} value={password} onChangeText={txt => setPassword(txt)}/>
 
-    <TouchableOpacity style={styles.createaccount} onPress={() => {createUser()}}>
+    <TouchableOpacity style={styles.createaccount} onPress={handleRegister}>
       <Text style={styles.createaccountText}>Create Account</Text>
     </TouchableOpacity>
 

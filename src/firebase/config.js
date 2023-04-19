@@ -1,9 +1,10 @@
 import firebase from 'firebase/compat/app';
-//import { initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app"; // uncomment 19.04.23
 //import 'firebase/storage';
 import 'firebase/compat/storage';
 //import 'firebase/firestore';
 import 'firebase/compat/firestore';
+import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,8 +17,10 @@ const firebaseConfig = {
   };
   
   // Initialize Firebase
-  //const app = initializeApp(firebaseConfig);
-  firebase.initializeApp(firebaseConfig);
+  const app = initializeApp(firebaseConfig); // uncomment 19.04.23
+  //firebase.initializeApp(firebaseConfig); // comment 19.04.23
+
+  export const auth = getAuth(app)
 
   const projectStorage = firebase.storage();
   const projectFirestore = firebase.firestore();
