@@ -39,7 +39,7 @@ export default function App() {
       />
       <Tab.Screen
         name='Profile'
-        component={TakePhoto} // ProfilePage
+        component={Authentication4} // ProfilePage // comm 20.04.23 Authentication4
         options={{
           tabBarIcon: ({ color }) => (
               <Feather name='user' size={24} color={color}/>
@@ -71,7 +71,7 @@ export default function App() {
       <Tab.Screen
         name='Search'
         //component={SearchPage}
-        component={Authentication4}
+        component={TakePhoto} //TakePhoto
         options={{
           tabBarIcon: ({ color }) => (
               <Feather name='search' size={24} color={color}/>
