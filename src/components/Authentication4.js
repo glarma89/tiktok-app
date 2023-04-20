@@ -10,16 +10,28 @@ const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
 
 const Authentication4 = () => {
+    const [fullName, setFullName] = useState('');
+    const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const signUp = () => {
+        console.log(fullName); // handleFullName
+        console.log(userName); // handleUserName
         createUserWithEmailAndPassword(auth, email, password).then((userCredetial) => {
             console.log(userCredetial);
         }).catch((error) => {
             console.log(error);
         })
     };
+
+    // const handleFullName = (e) => {
+    //     console.log(e.target.value);
+    // };
+
+    // const handleUserName = (e) => {
+    //     console.log(e.target.value);
+    // };
 
   return (
     <View style={styles.container}>
@@ -30,13 +42,25 @@ const Authentication4 = () => {
             onPress={() => navigation.navigate("Organization", { accaunt: 'organization' })}
         />
         <TextInput
-            placeholder='Enter Email' 
+            placeholder='My Full Name' 
+            style={styles.email}
+            value={fullName}
+            onChangeText={setFullName}
+        />
+        <TextInput
+            placeholder='My Username' 
+            style={styles.password} 
+            value={userName}
+            onChangeText={setUserName}
+        />
+        <TextInput
+            placeholder='My Email' 
             style={styles.email}
             value={email}
             onChangeText={txt => setEmail(txt)}
         />
         <TextInput
-            placeholder='Enter Password' 
+            placeholder='My Password' 
             style={styles.password} 
             value={password}
             onChangeText={txt => setPassword(txt)}
@@ -60,10 +84,27 @@ const styles = StyleSheet.create({
     title: {
       marginTop: '50%'
     },
+    fullName: {
+        width: '90%',
+      height: 50,
+      borderWidth: 0.5,
+      //marginTop: 30,
+      borderRadius: 20,
+      paddingLeft: 20,
+    },
+    userName: {
+        width: '90%',
+      height: 50,
+      borderWidth: 0.5,
+      marginTop: 30,
+      borderRadius: 20,
+      paddingLeft: 20,
+    },
     email: {
       width: '90%',
       height: 50,
       borderWidth: 0.5,
+      marginTop: 30,
       borderRadius: 20,
       paddingLeft: 20,
     },
