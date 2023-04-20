@@ -14,6 +14,7 @@ import TakePhoto from './src/components/TakePhoto';
 import Authentication from './src/components/Authentication';
 import Authentication2 from './src/components/Authentication2';
 import Authentication3 from './src/components/Authentication3';
+import Authentication4 from './src/components/Authentication4';
 
 //const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -70,7 +71,7 @@ export default function App() {
       <Tab.Screen
         name='Search'
         //component={SearchPage}
-        component={Authentication3}
+        component={Authentication4}
         options={{
           tabBarIcon: ({ color }) => (
               <Feather name='search' size={24} color={color}/>

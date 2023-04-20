@@ -1,9 +1,9 @@
-import firebase from 'firebase/compat/app';
+//import firebase from 'firebase/compat/app'; // comment 19.04.23
 import { initializeApp } from "firebase/app"; // uncomment 19.04.23
 //import 'firebase/storage';
-import 'firebase/compat/storage';
+//import 'firebase/compat/storage'; // comment 19.04.23
 //import 'firebase/firestore';
-import 'firebase/compat/firestore';
+//import 'firebase/compat/firestore'; // comment 19.04.23
 import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
@@ -22,8 +22,8 @@ const firebaseConfig = {
 
   export const auth = getAuth(app)
 
-  const projectStorage = firebase.storage();
-  const projectFirestore = firebase.firestore();
-  const timestamp = firebase.firestore.FieldValue.serverTimestamp;
+  // const projectStorage = firebase.storage(); // comment 19.04.23
+  // const projectFirestore = firebase.firestore(); // comment 19.04.23
+  // const timestamp = firebase.firestore.FieldValue.serverTimestamp; // comment 19.04.23
 
-  export { projectStorage, projectFirestore, timestamp }
+  // export { projectStorage, projectFirestore, timestamp } // comment 19.04.23
